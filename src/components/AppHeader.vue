@@ -24,11 +24,12 @@ export default{
 
     <div class="searchbar">
         <input type="text" placeholder="Cerca serie tv o film" @keyup.enter="$emit('searchEnter')" v-model="store.search">
+        <button @click.prevent="$emit('searchClick')"><i class="fa-solid fa-magnifying-glass"></i></button>
     </div>
   </header>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @use "../style/general.scss" as *;
 header{
     background-color: black;

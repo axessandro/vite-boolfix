@@ -1,8 +1,8 @@
 <script>
 import {store} from "./store"
 import axios from "axios";
-import AppHeader from './components/App.Header.vue';
-
+import AppHeader from './components/AppHeader.vue';
+import AppMain from "./components/AppMain.vue";
 
 export default{
   data(){
@@ -16,27 +16,36 @@ export default{
   },
   components:{
     AppHeader,
+    AppMain,
   },
   methods:{
+    // axios calls
     axiosMovieSearch(){
       axios.get(`${this.apis.compiledMovieApi}`).then((resp)=>{
-        console.log(resp.data.results);
+        this.store.movies = resp.data.results;
+        console.log(this.store.movies);
+
       })
     },
-    apiUrlComplied(){
-        if (this.store.search){
-            this.apis.compiledMovieApi = `${this.store.api.apiURL}${this.store.api.movieURL}${this.store.api.apiKey}${this.store.api.queryURL}${this.store.search}`;
-            this.apis.compiledShowsApi = `${this.store.api.apiURL}${this.store.api.showsURL}${this.store.api.apiKey}${this.store.api.queryURL}${this.store.search}`;
-        }
-        console.log(this.apis);
-        this.axiosMovieSearch()
+    axiosShowsSearch(){
+      axios.get(`${this.apis.compiledShowsApi}`).then((resp)=>{
+        this.store.shows = resp.data.results;
+        console.log(this.store.shows);
+      })
+    },
+    apiCalls(){
+      this.apis.compiledMovieApi = `${this.store.api.apiURL}${this.store.api.movieURL}${this.store.api.apiKey}${this.store.api.queryURL}${this.store.search}`;
+      this.apis.compiledShowsApi = `${this.store.api.apiURL}${this.store.api.showsURL}${this.store.api.apiKey}${this.store.api.queryURL}${this.store.search}`;
+      this.axiosMovieSearch();
+      this.axiosShowsSearch();
     }
   }
 }
 </script>
 
 <template>
-  <AppHeader @searchEnter="apiUrlComplied"/>
+  <AppHeader @searchEnter="apiCalls" @searchClick="apiCalls"/>
+  <AppMain/>
 </template>
 
 <style lang="scss">

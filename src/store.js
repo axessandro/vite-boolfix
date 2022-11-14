@@ -10,6 +10,9 @@ export const store = reactive({
         queryURL: "&query=",
     },
 
+    movies: [],
+    shows: [],
+
     search: "",
     loading: "false",
 });
