@@ -9,7 +9,7 @@ export const store = reactive({
         showsURL: "/tv",
         queryURL: "&query=",
     },
-
+    
     movies: [],
     shows: [],
 
