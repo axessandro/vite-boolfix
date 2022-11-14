@@ -11,6 +11,16 @@ export default{
     props:{
         movie: Object,
         show: Object,
+    },
+    methods:{
+        flagLang(){
+            if (this.movie.original_language === 'it') {
+                this.movie.original_language = '🇮🇹';
+            }
+            if (this.movie.original_language = 'en') {
+                this.movie.original_language = '🇺🇸';   
+            }
+        }
     }
 }
 </script>
@@ -21,8 +31,8 @@ export default{
         <div class="text-wrapper">
             <h2>{{movie.title}}</h2>
             <h4>{{movie.original_title}}</h4>
-            <div class="stars wrapper">
-                
+            <div class="language">{{movie.original_language}}</div>
+            <div class="stars wrapper"> 
             </div>
         </div>
 
@@ -32,7 +42,6 @@ export default{
 
 <style lang="scss" scoped>
 @use "../style/general.scss" as *;
-
 .ms-card{
     border: 1px solid white;
     img{
