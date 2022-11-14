@@ -14,15 +14,15 @@ export default{
     }
 }
 </script>
-</script>
+
 
 <template>
     <div class="ms-card">
         <div class="text-wrapper">
-            <h2></h2>
-            <h4></h4>
+            <h2>{{movie.title}}</h2>
+            <h4>{{movie.original_title}}</h4>
             <div class="stars wrapper">
-                <i class="fa-solid fa-star"></i>
+                
             </div>
         </div>
 
@@ -32,4 +32,11 @@ export default{
 
 <style lang="scss" scoped>
 @use "../style/general.scss" as *;
+
+.ms-card{
+    border: 1px solid white;
+    img{
+        max-width: 100%;
+    }
+}
 </style>
