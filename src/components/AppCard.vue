@@ -77,7 +77,7 @@ export default{
     height: 380px;
     
     &:hover{
-        border: 7px solid rgb(35, 35, 35);
+        border: 5px solid rgb(35, 35, 35);
         border-radius: 20px;
     }
     

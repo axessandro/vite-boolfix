@@ -16,11 +16,11 @@ export default{
 </script>
 
 <template>
-    <main>
+    <main v-if="store.movies.length > 0">
         <div class="container">
             
             <!-- movies search -->
-            <h2 v-if="store.movies.length > 0">Movies</h2>
+            <h2>Movies</h2>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
                 <div class="col" v-for="(movie, index) in store.movies" :key="index">
                     <AppCard :item="movie"/>
@@ -29,7 +29,7 @@ export default{
             <!-- /movies search-->
 
             <!-- shows search-->
-            <h2 v-if="store.movies.length > 0">Shows</h2>
+            <h2>Shows</h2>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
 
                 <div class="col" v-for="(show, index) in store.shows" :key="index">

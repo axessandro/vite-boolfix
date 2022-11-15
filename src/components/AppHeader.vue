@@ -8,14 +8,21 @@ export default{
         store,
     }
   },
+  methods:{
+    emptyArrays(){
+      this.store.movies = [],
+      this.store.shows = [],
+      this.store.search = ''
+    }
+  }
 }
 </script>
 
 <template>
-  <header :class="store.search ? '' : 'first-load'">
+  <header :class="store.movies.length > 1 ? '' : 'first-load'">
     <div class="container">
       
-      <div class="title">
+      <div class="title" @click="emptyArrays">
           <h1>BOOLFLIX</h1>
       </div>
   
@@ -37,11 +44,14 @@ header{
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-  h1{
-    color: red;
-    font-size: 3rem;
-    font-weight: 600;
-  }
+    .title{
+      cursor: pointer;
+      h1{
+        color: red;
+        font-size: 3rem;
+        font-weight: 600;
+      }
+    }
 
   .searchbar{
     padding: .5rem 1rem;
