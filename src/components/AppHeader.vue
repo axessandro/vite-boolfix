@@ -6,18 +6,13 @@ export default{
   data(){
     return{
         store,
-        
     }
   },
-  methods:{
-    
-  }
 }
-
 </script>
 
 <template>
-  <header>
+  <header :class="store.search ? '' : 'first-load'">
     <div class="container">
       
       <div class="title">
@@ -56,17 +51,36 @@ header{
       background-color: rgb(23, 23, 23);
       border: 0;
       color: white;
-      
+     &:focus{
+      outline: 1px solid rgb(75, 75, 75);
     }
+    }
+
     button{
       background-color: rgb(23, 23, 23);
       border: 0;
       color: gray;
     }
   }
-
   }
 }
+
+header.first-load{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .container{
+    flex-direction: column;
+    scale: 1.5;
+    .searchbar{
+        border: 1px solid gray;
+    }
+  }
+}
+
+
 
 
 </style>

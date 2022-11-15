@@ -24,7 +24,6 @@ export default{
       axios.get(`${this.apis.compiledMovieApi}`).then((resp)=>{
         this.store.movies = resp.data.results;
         console.log(this.store.movies);
-
       })
     },
     axiosShowsSearch(){
@@ -33,13 +32,16 @@ export default{
         console.log(this.store.shows);
       })
     },
+    
+    // search call
     apiCalls(){
       this.apis.compiledMovieApi = `${this.store.api.apiURL}${this.store.api.movieURL}${this.store.api.apiKey}${this.store.api.queryURL}${this.store.search}`;
       this.apis.compiledShowsApi = `${this.store.api.apiURL}${this.store.api.showsURL}${this.store.api.apiKey}${this.store.api.queryURL}${this.store.search}`;
       this.axiosMovieSearch();
       this.axiosShowsSearch();
     }
-  }
+  },
+  
 }
 </script>
 

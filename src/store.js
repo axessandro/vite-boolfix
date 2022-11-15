@@ -8,10 +8,8 @@ export const store = reactive({
         movieURL: "search/movie",
         showsURL: "search/tv",
         queryURL: "&query=",
-        // getting top-rated api: apiURL + topURL + "&language=us-en-it&page=2"
-        topURL: "top_rated",
     },
-    
+
     movies: [],
     shows: [],
 

@@ -10,7 +10,7 @@ export default{
         }
     },
     components:{
-        AppCard
+        AppCard,
     },
 }
 </script>
@@ -18,7 +18,7 @@ export default{
 <template>
     <main>
         <div class="container">
-
+            
             <!-- movies search -->
             <h2 v-if="store.movies.length > 0">Movies</h2>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
@@ -38,7 +38,6 @@ export default{
             </div>
             <!-- /shows search-->
 
-
         </div>
     </main>
 </template>
@@ -49,15 +48,16 @@ main{
     height: 85vh;
     overflow-y: scroll;
     .container{
-        
         .row{
             padding-bottom: 2rem;
         }
-
         h2{
             font-size: 2.6rem;
             padding: .8rem 0;
         }
     }
+}
+main::-webkit-scrollbar{
+    display: none;
 }
 </style>
