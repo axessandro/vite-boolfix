@@ -5,29 +5,34 @@ export default{
     name: "AppCard",
     data(){
         return{
-            store
+            store,
+            aviableFlags: ['it', 'en', 'fr', 'de'],
         }
     },
     props:{
-        movie: Object,
+        item: Object,
     },
-    methods:{
-        aviableFlags: ['it', 'en', 'fr', 'de'],
-        flagLang(){
-            if (this.movie.original_language === 'it') {
-                this.movie.original_language = '🇮🇹';
-            }else if (this.movie.original_language === 'en') {
-                this.movie.original_language = '🇺🇸';   
-            }else if (this.movie.original_language === 'fr') {
-                this.movie.original_language = '🇫🇷';   
-            }else if (this.movie.original_language === 'de') {
-                this.movie.original_language = '🇩🇪';   
-            }
-        }, 
 
-    },
-    created(){
-        this.flagLang();
+    computed:{
+        getFlag(){
+            if (this.item.original_language === 'it') {
+                 return this.item.original_language = '🇮🇹';
+            }else if (this.item.original_language === 'en') {
+                 return this.item.original_language = '🇺🇸';   
+            }else if (this.item.original_language === 'fr') {
+                 return this.item.original_language = '🇫🇷';   
+            }else if (this.item.original_language === 'de') {
+                 return this.item.original_language = '🇩🇪';   
+            } else {
+                return this.item.original_language
+            }
+        },
+        getTitle(){
+            return this.item.title ? this.item.title : this.item.name;
+        },
+        getOriginalTitle(){
+            return this.item.original_title ? this.item.original_title : this.item.original_name
+        }
     }
 }
 </script>
@@ -37,27 +42,27 @@ export default{
     
     <div class="ms-card">
         <div class="text-wrapper">
-            <p><span>Titolo:</span> {{movie.title}}</p>
-            <p v-if="movie.title != movie.original_title"><span>Titolo originale:</span> {{movie.original_title}}</p>
+            <p><span>Titolo:</span> {{getTitle}}</p>
+            <p v-if="item.title != item.original_title"><span>Titolo originale:</span> {{getOriginalTitle}}</p>
             <div class="stars-wrapper">
                 <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star" v-if="movie.vote_average >= 3.5"></i>
+                <i class="fa-solid fa-star" v-if="item.vote_average >= 3.5"></i>
                 <i class="fa-regular fa-star" v-else></i>
-                <i class="fa-solid fa-star" v-if="movie.vote_average >= 5.5"></i>
+                <i class="fa-solid fa-star" v-if="item.vote_average >= 5.5"></i>
                 <i class="fa-regular fa-star" v-else></i>
-                <i class="fa-solid fa-star" v-if="movie.vote_average >= 7.5"></i>
+                <i class="fa-solid fa-star" v-if="item.vote_average >= 7.5"></i>
                 <i class="fa-regular fa-star" v-else></i>
-                <i class="fa-solid fa-star" v-if="movie.vote_average >= 9.5"></i>
+                <i class="fa-solid fa-star" v-if="item.vote_average >= 9.5"></i>
                 <i class="fa-regular fa-star" v-else></i>
-                <span>{{movie.vote_average * 10}}%</span>
+                <span>{{item.vote_average * 10}}%</span>
             </div>
 
-            <p><span>Lingua originale:</span> {{movie.original_language}}</p>
+            <p><span>Lingua originale:</span> {{getFlag}}</p>
             
-            <p><span>Overview:</span> {{movie.overview}}</p>
+            <p><span>Overview:</span> {{item.overview}}</p>
         </div>
 
-        <img :src="`https://image.tmdb.org/t/p/w342${movie.poster_path}`" alt="">
+        <img :src="`https://image.tmdb.org/t/p/w342${item.poster_path}`" alt="">
     </div>
    
 </template>

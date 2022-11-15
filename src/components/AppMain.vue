@@ -1,7 +1,6 @@
 <script>
 import {store} from "../store"
 import AppCard from "./AppCard.vue";
-import AppCard1 from "./AppCard1.vue";
 
 export default{
     name: "AppMain",
@@ -11,8 +10,7 @@ export default{
         }
     },
     components:{
-        AppCard,
-        AppCard1,
+        AppCard
     },
 }
 </script>
@@ -25,7 +23,7 @@ export default{
             <h2 v-if="store.movies.length > 0">Movies</h2>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
                 <div class="col" v-for="(movie, index) in store.movies" :key="index">
-                    <AppCard :movie="movie"/>
+                    <AppCard :item="movie"/>
                 </div>
             </div>
             <!-- /movies search-->
@@ -35,7 +33,7 @@ export default{
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
 
                 <div class="col" v-for="(show, index) in store.shows" :key="index">
-                    <AppCard1 :show="show"/>
+                    <AppCard :item="show"/>
                 </div>
             </div>
             <!-- /shows search-->
