@@ -50,6 +50,10 @@ main{
     overflow-y: scroll;
     .container{
         
+        .row{
+            padding-bottom: 2rem;
+        }
+
         h2{
             font-size: 2.6rem;
             padding: .8rem 0;

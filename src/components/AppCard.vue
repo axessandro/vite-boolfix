@@ -31,7 +31,11 @@ export default{
             return this.item.title ? this.item.title : this.item.name;
         },
         getOriginalTitle(){
-            return this.item.original_title ? this.item.original_title : this.item.original_name
+            return this.item.original_title ? this.item.original_title : this.item.original_name;
+        },
+        getDateRelese(){
+            return this.item.release_date ? this.item.release_date : this.item.first_air_date;
+            
         }
     }
 }
@@ -44,6 +48,7 @@ export default{
         <div class="text-wrapper">
             <p><span>Titolo:</span> {{getTitle}}</p>
             <p v-if="item.title != item.original_title"><span>Titolo originale:</span> {{getOriginalTitle}}</p>
+            <p v-if="getDateRelese">{{getDateRelese.slice(0, 4)}}</p>
             <div class="stars-wrapper">
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star" v-if="item.vote_average >= 3.5"></i>

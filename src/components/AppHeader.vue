@@ -44,6 +44,8 @@ header{
     padding: 1rem;
   h1{
     color: red;
+    font-size: 3rem;
+    font-weight: 600;
   }
 
   .searchbar{
