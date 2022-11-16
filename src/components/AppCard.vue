@@ -34,6 +34,9 @@ export default{
         },
         getDateRelese(){
             return this.item.release_date ? this.item.release_date : this.item.first_air_date;
+        },
+        getStars() {
+            return Math.ceil(this.item.vote_average / 2);
         }
     }
 }
@@ -48,15 +51,7 @@ export default{
             <p v-if="item.title != item.original_title"><span>Titolo originale:</span> {{getOriginalTitle}}</p>
             <p v-if="getDateRelese">{{getDateRelese.slice(0, 4)}}</p>
             <div class="stars-wrapper">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star" v-if="item.vote_average >= 3.5"></i>
-                <i class="fa-regular fa-star" v-else></i>
-                <i class="fa-solid fa-star" v-if="item.vote_average >= 5.5"></i>
-                <i class="fa-regular fa-star" v-else></i>
-                <i class="fa-solid fa-star" v-if="item.vote_average >= 7.5"></i>
-                <i class="fa-regular fa-star" v-else></i>
-                <i class="fa-solid fa-star" v-if="item.vote_average >= 9.5"></i>
-                <i class="fa-regular fa-star" v-else></i>
+                <i v-for="n in 5" :key="n" :class="n <= getStars ? 'fa-solid' : 'fa-regular'" class="fa-star"></i>
                 <span>{{item.vote_average * 10}}% compatibile</span>
             </div>
 
@@ -65,7 +60,8 @@ export default{
             <p><span>Overview:</span> {{item.overview}}</p>
         </div>
 
-        <img :src="`https://image.tmdb.org/t/p/w342${item.poster_path}`" alt="">
+        <img v-if="item.poster_path" :src="`https://image.tmdb.org/t/p/w342${item.poster_path}`" alt="">
+        <div v-else class="img-not-found">{{getTitle}}</div>
     </div>
    
 </template>
@@ -87,8 +83,11 @@ export default{
         border-radius: 20px;
     }
 
-    
     &:hover img{
+        display: none;
+    }
+
+    &:hover .img-not-found{
         display: none;
     }
     
@@ -131,6 +130,17 @@ export default{
         height: 100%;
         object-fit: cover;
         object-position: top;
+    }
+    .img-not-found{
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+        border: 1px solid gray;
+        text-align: center;
     }
 }
 </style>
