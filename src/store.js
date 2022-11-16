@@ -8,11 +8,15 @@ export const store = reactive({
         movieURL: "search/movie",
         showsURL: "search/tv",
         queryURL: "&query=",
+        castURL1: "movie/",
+        castURL2: "credits",
     },
 
     movies: [],
     shows: [],
+    cast: [],
 
     search: "",
     loading: "false",
+    idMovie: "",
 });
